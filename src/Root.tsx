@@ -1,8 +1,11 @@
-import React from "react";
+import { useState } from "react";
 import { Outlet } from "react-router";
 import Header from "./components/Header";
 
 function Root() {
+  const [value, setValue] = useState([]);
+  // console.log(value[0]['name']);
+
   return (
     <div>
       <Header />
