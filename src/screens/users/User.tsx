@@ -12,13 +12,13 @@ export const userList = [
 ];
 
 function User() {
-  const params = useParams();
+  const {userId} = useParams();
 
   return (
     <div>
       <h1>User</h1>
       <Link to="followers">See Followers</Link>
-      <Outlet />
+      <Outlet context={{ userName: userList[useParams.userId] }}/>
     </div>
   );
 }
