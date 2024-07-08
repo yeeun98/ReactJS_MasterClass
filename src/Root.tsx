@@ -6,7 +6,13 @@ function Root() {
   return (
     <div>
       <Header />
+
+      <hr />
+
       <Outlet />
+
+      <hr />
+
       <footer>
         footer
       </footer>
