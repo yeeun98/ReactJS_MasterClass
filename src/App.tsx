@@ -59,6 +59,10 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
+    color: #18181a;
+    &:active {
+      color: #18181a;
+    }
   }
 `;
 
