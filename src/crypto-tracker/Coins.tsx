@@ -4,7 +4,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 0 20px 20px 20px;
-  width: 480px;
+  width: 100%;
+  max-width: 480px;
   margin: 0 auto;
   background-color: #1F2937;
   box-sizing: border-box;
@@ -13,7 +14,8 @@ export const Header = styled.header`
   padding-top: 20px;
   text-align: center;
   position: fixed;
-  width: 480px;
+  width: 100%;
+  max-width: 480px;
   margin-left: -20px;
   background-color: #1F2937;
 `;
@@ -40,7 +42,7 @@ const Coin = styled.li`
 export const Title = styled.h1`
   margin-bottom: 15px;
   color: #3B82F6;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 700;
   width: 100%; 
 `;

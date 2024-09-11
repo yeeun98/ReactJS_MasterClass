@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import Coin from "./crypto-tracker/Coin";
+import Price from "./crypto-tracker/Price";
+import Chart from "./crypto-tracker/Chart";
 
 const router = createBrowserRouter([
   {
@@ -11,6 +13,16 @@ const router = createBrowserRouter([
   {
     path: '/:coinId',
     element: <Coin />,
+    children:[
+      {
+        path: '',
+        element: <Price />
+      },
+      {
+        path: 'chart',
+        element: <Chart />
+      },
+    ]
   },
 ]);
 
