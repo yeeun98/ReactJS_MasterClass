@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { fetchCoins } from "./api";
 
+//#region style-component
 export const Container = styled.div`
   padding: 0 20px 20px 20px;
   width: 100%;
@@ -54,6 +57,7 @@ const Img = styled.img`
   width: 25px; 
   height: 25px; 
 `;
+//#endregion
 
 //#region interface
 interface CoinInterface {
@@ -68,18 +72,19 @@ interface CoinInterface {
 //#endregion
 
 function Coins() {
-  const [coins, setCoins] = useState<CoinInterface[]>([]);
-  const [loading, setLoading] = useState(false);
+  const { isLoading, data } = useQuery<CoinInterface[]>('allCoins', fetchCoins);
+  // const [coins, setCoins] = useState<CoinInterface[]>([]);
+  // const [loading, setLoading] = useState(false);
 
-  useEffect(()=>{
-    (async() => {
-      setLoading(true);
-      const response = await fetch('https://api.coinpaprika.com/v1/coins');
-      const json = await response.json();
-      setCoins(json.splice(0,100));
-      setLoading(false);
-    })();
-  }, [])
+  // useEffect(()=>{
+  //   (async() => {
+  //     setLoading(true);
+  //     const response = await fetch('https://api.coinpaprika.com/v1/coins');
+  //     const json = await response.json();
+  //     setCoins(json.splice(0,100));
+  //     setLoading(false);
+  //   })();
+  // }, [])
 
   return <Container>
     <Header>
@@ -87,9 +92,9 @@ function Coins() {
     </Header>
     <Main>
         {
-          loading ? (<Loader>로드중...</Loader>) : (
+          isLoading ? (<Loader>로드중...</Loader>) : (
             <CoinsList>
-              { coins.map((coin) => (
+              { data?.map((coin: CoinInterface) => (
                 <Coin key={coin.id}>
                   <Link to={`/${coin.id}`} state={{name: coin.name}}>
                     <Img src={`https://cryptoicon-api.pages.dev/api/icon/${coin.symbol.toLowerCase()}`} />

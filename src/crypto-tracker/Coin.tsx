@@ -87,7 +87,7 @@ import styled from 'styled-components';
   }
   //#endregion
 
-//#region StyleComponent
+//#region style-component
 const RowList = styled.ul`
   display: flex;
   justify-content: space-between;
