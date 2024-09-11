@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Outlet, Route, Routes, useLocation, useParams } from 'react-router-dom';
+import { Link, Outlet, Route, Routes, useLocation, useMatch, useParams } from 'react-router-dom';
 import { Container, Header, Title, Main, Loader } from './Coins';
 import styled from 'styled-components';
-import Chart from './Chart';
-import Price from './Price';
 
 /**
  * coin id로 코인 받기 (Coins)
@@ -95,7 +93,7 @@ const RowList = styled.ul`
   justify-content: space-between;
   background-color: #415a77;
   border-radius: 12px;
-  padding: 18px; 25px;
+  padding: 18px 25px;
   box-sizing: border-box;
 `;
 
@@ -118,6 +116,24 @@ const Description = styled.p`
   color: #fff;
   margin: 24px 0;
 `;
+
+const Tabs = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 30px 0;
+  gap: 10px;
+`;
+const Tab = styled.li<{isActive: boolean}>`
+  text-align: center;
+  background-color: #303a49;
+  border-radius: 12px;
+  padding: 10px 0;
+  font-size: 14px;
+
+  a {
+    color: ${props => props.isActive ? props.theme.accentColor : '#fff'};
+  }
+`;
 //#endregion
 
 function Coin() {
@@ -127,6 +143,9 @@ function Coin() {
   const state = location.state as RouteState;
   const [info, setInfo] = useState<IInfoData>();
   const [priceInfo, setPriceInfo] = useState<IPriceData>();
+
+  const priceMatch = useMatch('/:coinId/price');
+  const chartMatch = useMatch('/:coinId/chart');
 
   useEffect(()=>{
     (async() => {
@@ -182,7 +201,18 @@ function Coin() {
               </RowItem>
             </RowList>
 
-            
+            <Tabs>
+              <Tab isActive={chartMatch !== null}>
+                <Link to="chart" state={{name: state.name}}>
+                  CHART
+                </Link>
+              </Tab>
+              <Tab isActive={priceMatch !== null}>
+                <Link to="price" state={{name: state.name}}>
+                  PRICE
+                </Link>
+              </Tab>
+            </Tabs>
             <Outlet />
           </>
         )

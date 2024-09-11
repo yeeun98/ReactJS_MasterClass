@@ -20,7 +20,7 @@ export const Header = styled.header`
   background-color: #1F2937;
 `;
 export const Main = styled.main`
-  padding-top: 70px;
+  padding-top: 80px;
   min-height: 100vh;
 `;
 const CoinsList = styled.ul`
@@ -40,7 +40,6 @@ const Coin = styled.li`
 `;
 
 export const Title = styled.h1`
-  margin-bottom: 15px;
   color: #3B82F6;
   font-size: 35px;
   font-weight: 700;
