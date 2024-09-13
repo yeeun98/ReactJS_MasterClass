@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "./api";
@@ -72,7 +72,10 @@ interface CoinInterface {
 //#endregion
 
 function Coins() {
-  const { isLoading, data } = useQuery<CoinInterface[]>('allCoins', fetchCoins);
+  const { isLoading, data } = useQuery<CoinInterface[]>({
+    queryKey: ['allCoins'],
+    queryFn: fetchCoins
+  });
   // const [coins, setCoins] = useState<CoinInterface[]>([]);
   // const [loading, setLoading] = useState(false);
 
