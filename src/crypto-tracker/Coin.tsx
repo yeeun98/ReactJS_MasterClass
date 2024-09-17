@@ -4,6 +4,7 @@ import { Container, Header, Title, Main, Loader } from './Coins';
 import styled from 'styled-components';
 import { useQuery } from "@tanstack/react-query";
 import { fetchCoinInfo, fetchCoinTickers } from './api';
+import { Helmet } from 'react-helmet';
 
 /**
  *
@@ -163,7 +164,8 @@ function Coin() {
   });
   const { isLoading: priceLoading, data: priceData } = useQuery<IPriceData>({
     queryKey: ["tickers", coinId],
-    queryFn: () => fetchCoinTickers(coinId ?? '')
+    queryFn: () => fetchCoinTickers(coinId ?? ''),
+    refetchInterval: 5000
   });
 
 
@@ -183,6 +185,11 @@ function Coin() {
   // }, [])
 
   return <Container>
+    <Helmet>
+      <title>
+        {state?.name}
+      </title>
+    </Helmet>
     <Header>
       <Title>{state?.name}</Title>
     </Header>

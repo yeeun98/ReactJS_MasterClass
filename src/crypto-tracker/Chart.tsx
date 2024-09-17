@@ -58,6 +58,11 @@ function Chart() {
               show: false
             }
           },
+          fill: {
+            type: 'gradient',
+            gradient: { gradientToColors: ['skyblue'] }
+          },
+          colors: ['pink']
         }}/>
     }
   </div>
