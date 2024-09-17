@@ -6,13 +6,21 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchCoinInfo, fetchCoinTickers } from './api';
 
 /**
- * coin id로 코인 받기 (Coins)
+ *
+  coin id로 코인 받기 (Coins)
   https://api.coinpaprika.com/v1/coins/btc-bitcoin
   https://api.coinpaprika.com/#operation/getCoinById
  *
- * coin id로 특정 코인에 대한 시세 정보 얻기 (Tickers)
+  coin id로 특정 코인에 대한 시세 정보 얻기 (Tickers)
   https://api.coinpaprika.com/v1/tickers/btc-bitcoin
   https://api.coinpaprika.com/#operation/getTickersById
+ *
+  Coinpaprika API 는 더이상 무료가 아닙니다. ㅠㅠ
+  그래서 니꼬가 자체 API 를 만들었어요.
+  자체 URL: https://ohlcv-api.nomadcoders.workers.dev
+
+  사용을 위해서는. 파라미터로 coinId 를 추가하세요.
+  https://ohlcv-api.nomadcoders.workers.dev?coinId=btc-bitcoin
  *
  **/
 
