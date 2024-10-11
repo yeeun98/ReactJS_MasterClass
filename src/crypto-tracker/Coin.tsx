@@ -99,6 +99,22 @@ import { Helmet } from 'react-helmet';
   //#endregion
 
 //#region style-component
+const CoinHeader = styled(Header)`
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+`;
+
+const BackButton = styled.button.attrs({ type: 'button' })`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  width: 35px;
+  height: 35px;
+`;
+
 const RowList = styled.ul`
   display: flex;
   justify-content: space-between;
@@ -168,7 +184,6 @@ function Coin() {
     refetchInterval: 5000
   });
 
-
   // useEffect(()=>{
   //   (async() => {
   //     const infoData = await(
@@ -191,6 +206,7 @@ function Coin() {
       </title>
     </Helmet>
     <Header>
+      <BackButton>←</BackButton>
       <Title>{state?.name}</Title>
     </Header>
 

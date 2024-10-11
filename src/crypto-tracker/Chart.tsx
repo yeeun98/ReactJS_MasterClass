@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchCoinHistory } from "./api";
 import ApexChart from "react-apexcharts";
 
-interface IHistorical {
+export interface IHistorical {
   time_open: number;
   time_close: number;
   open: number;
@@ -19,7 +19,7 @@ function Chart() {
   const { isLoading, data } = useQuery<IHistorical[]>({
     queryKey: ['history'],
     queryFn: () => fetchCoinHistory(coinId ?? '')
-  })
+  });
 
   return <div>
     {
