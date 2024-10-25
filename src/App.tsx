@@ -78,6 +78,7 @@ const ModeBtn = styled.button.attrs({ type: 'button' })`
 
 function App() {
   const [isDark, setIsDark] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const toggleDark = () => setIsDark(current => !current);
 
   return (
@@ -86,7 +87,7 @@ function App() {
         <ModeBtn onClick={toggleDark}>Toggle Mode</ModeBtn>
         <ReactQueryDevtools initialIsOpen={true} />
         <GlobalStyle />
-        <Coins />
+        <Coins toggleDark={toggleDark} />
         123
       </ThemeProvider>
     </>
