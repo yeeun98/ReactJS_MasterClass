@@ -1,6 +1,9 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Coins from "./crypto-tracker/Coins";
+import { ThemeProvider } from 'styled-components';
+import { darkTheme, lightTheme } from "./theme";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useState } from "react";
 
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -67,10 +70,25 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const ModeBtn = styled.button.attrs({ type: 'button' })`
+  position: fixed;
+  top: 0;
+  right: 0;
+`
+
 function App() {
+  const [isDark, setIsDark] = useState(false);
+  const toggleDark = () => setIsDark(current => !current);
+
   return (
     <>
-      <Coins />
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <ModeBtn onClick={toggleDark}>Toggle Mode</ModeBtn>
+        <ReactQueryDevtools initialIsOpen={true} />
+        <GlobalStyle />
+        <Coins />
+        123
+      </ThemeProvider>
     </>
   );
 }

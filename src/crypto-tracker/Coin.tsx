@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, Route, Routes, useLocation, useMatch, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useMatch, useParams } from 'react-router-dom';
 import { Container, Header, Title, Main, Loader } from './Coins';
 import styled from 'styled-components';
 import { useQuery } from "@tanstack/react-query";
