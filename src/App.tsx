@@ -3,7 +3,8 @@ import Coins from "./crypto-tracker/Coins";
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from "./theme";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -77,17 +78,14 @@ const ModeBtn = styled.button.attrs({ type: 'button' })`
 `
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const toggleDark = () => setIsDark(current => !current);
+  const [isDark, setIsDark] = useRecoilState(isDarkAtom);
 
   return (
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <ModeBtn onClick={toggleDark}>Toggle Mode</ModeBtn>
         <ReactQueryDevtools initialIsOpen={true} />
         <GlobalStyle />
-        <Coins toggleDark={toggleDark} />
+        <Coins />
         123
       </ThemeProvider>
     </>

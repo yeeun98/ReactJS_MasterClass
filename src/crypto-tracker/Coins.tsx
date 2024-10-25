@@ -68,13 +68,9 @@ interface CoinInterface {
   is_active: boolean;
   type: string;
 }
-
-interface ICoinsProps {
-  toggleDark: () => void;
-}
 //#endregion
 
-function Coins({ toggleDark }: ICoinsProps) {
+function Coins() {
   const { isLoading, data } = useQuery<CoinInterface[]>({
     queryKey: ['allCoins'],
     queryFn: fetchCoins
@@ -95,7 +91,6 @@ function Coins({ toggleDark }: ICoinsProps) {
   return <Container>
     <Header>
       <Title>코인</Title>
-      <button onClick={toggleDark}>asd</button>
     </Header>
     <Main>
         {
