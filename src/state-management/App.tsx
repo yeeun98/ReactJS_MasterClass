@@ -1,10 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import Coins from "./crypto-tracker/Coins";
-import { ThemeProvider } from 'styled-components';
-import { darkTheme, lightTheme } from "./theme";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "./crypto-tracker/atoms";
+import TodoList from "./TodoList";
 
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -59,8 +54,6 @@ export const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: 'Source Sans Pro, sans-serif';
-    background-color: ${props => props.theme.bgColor};
-    color: ${props => props.theme.textColor};
   }
   a {
     text-decoration: none;
@@ -76,15 +69,10 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const isDark = useRecoilValue(isDarkAtom);
-
   return (
     <>
-      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <ReactQueryDevtools initialIsOpen={true} />
-        <GlobalStyle />
-        <Coins />
-      </ThemeProvider>
+      <GlobalStyle />
+      <TodoList />
     </>
   );
 }

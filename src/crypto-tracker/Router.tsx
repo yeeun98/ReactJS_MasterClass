@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import App from "./App";
-import Coin from "./crypto-tracker/Coin";
-import Price from "./crypto-tracker/Price";
-import Chart from "./crypto-tracker/Chart";
+import Coin from "./Coin";
+import Price from "./Price";
+import Chart from "./Chart";
 
 const router = createBrowserRouter([
   {

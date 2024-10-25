@@ -74,7 +74,8 @@ interface CoinInterface {
 
 function Coins() {
   const [isDark, setIsDark] = useRecoilState(isDarkAtom);
-  const toggleDartAtom = () => setIsDark(current => !current);
+  const toggleDarkAtom = () => setIsDark(current => !current);
+
   const { isLoading, data } = useQuery<CoinInterface[]>({
     queryKey: ['allCoins'],
     queryFn: fetchCoins
@@ -83,7 +84,7 @@ function Coins() {
   return <Container>
     <Header>
       <Title>코인</Title>
-      <button type="button" onClick={toggleDartAtom}>Toggle Mode</button>
+      <button type="button" onClick={toggleDarkAtom}>Toggle Mode</button>
     </Header>
 
     <Main>
