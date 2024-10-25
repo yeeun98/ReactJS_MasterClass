@@ -1,9 +1,9 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import Coins from "./crypto-tracker/Coins";
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from "./theme";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { isDarkAtom } from "./atoms";
 
 export const GlobalStyle = createGlobalStyle`
@@ -69,16 +69,14 @@ export const GlobalStyle = createGlobalStyle`
       color: #18181a;
     }
   }
+  ul {
+    list-style: none;
+    padding-inline-start: 0;
+  }
 `;
 
-const ModeBtn = styled.button.attrs({ type: 'button' })`
-  position: fixed;
-  top: 0;
-  right: 0;
-`
-
 function App() {
-  const [isDark, setIsDark] = useRecoilState(isDarkAtom);
+  const isDark = useRecoilValue(isDarkAtom);
 
   return (
     <>
@@ -86,7 +84,6 @@ function App() {
         <ReactQueryDevtools initialIsOpen={true} />
         <GlobalStyle />
         <Coins />
-        123
       </ThemeProvider>
     </>
   );

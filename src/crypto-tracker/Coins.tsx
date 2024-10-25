@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "./api";
+import { useRecoilState } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 //#region style-component
 export const Container = styled.div`
@@ -71,27 +73,19 @@ interface CoinInterface {
 //#endregion
 
 function Coins() {
+  const [isDark, setIsDark] = useRecoilState(isDarkAtom);
+  const toggleDartAtom = () => setIsDark(current => !current);
   const { isLoading, data } = useQuery<CoinInterface[]>({
     queryKey: ['allCoins'],
     queryFn: fetchCoins
   });
-  // const [coins, setCoins] = useState<CoinInterface[]>([]);
-  // const [loading, setLoading] = useState(false);
-
-  // useEffect(()=>{
-  //   (async() => {
-  //     setLoading(true);
-  //     const response = await fetch('https://api.coinpaprika.com/v1/coins');
-  //     const json = await response.json();
-  //     setCoins(json.splice(0,100));
-  //     setLoading(false);
-  //   })();
-  // }, [])
 
   return <Container>
     <Header>
       <Title>코인</Title>
+      <button type="button" onClick={toggleDartAtom}>Toggle Mode</button>
     </Header>
+    
     <Main>
         {
           isLoading ? (<Loader>로드중...</Loader>) : (

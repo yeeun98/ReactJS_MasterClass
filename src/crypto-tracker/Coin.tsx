@@ -98,11 +98,6 @@ import { Helmet } from 'react-helmet';
   //#endregion
 
 //#region style-component
-const CoinHeader = styled(Header)`
-  display: grid;
-  grid-template-columns: 1fr 9fr;
-`;
-
 const BackButton = styled.button.attrs({ type: 'button' })`
   position: absolute;
   top: 20px;
@@ -139,7 +134,7 @@ const RowItem = styled.li`
 `;
 
 const Description = styled.p`
-  color: #fff;
+  color: ${prop => prop.theme.textColor};
   margin: 24px 0;
 `;
 
@@ -148,6 +143,8 @@ const Tabs = styled.ul`
   grid-template-columns: repeat(2, 1fr);
   margin: 30px 0;
   gap: 10px;
+  list-style: none;
+  padding-inline-start: 0;
 `;
 const Tab = styled.li<{isActive: boolean}>`
   text-align: center;
@@ -169,10 +166,6 @@ function Coin() {
   const priceMatch = useMatch('/:coinId/price');
   const chartMatch = useMatch('/:coinId/chart');
 
-  // const [loading, setLoading] = useState(true);
-  // const [info, setInfo] = useState<IInfoData>();
-  // const [priceInfo, setPriceInfo] = useState<IPriceData>();
-
   const { isLoading: infoLoading, data: infoData } = useQuery<IInfoData>({
     queryKey: ["info", coinId],
     queryFn: () => fetchCoinInfo(coinId ?? '')
@@ -182,21 +175,6 @@ function Coin() {
     queryFn: () => fetchCoinTickers(coinId ?? ''),
     refetchInterval: 5000
   });
-
-  // useEffect(()=>{
-  //   (async() => {
-  //     const infoData = await(
-  //       await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
-  //     ).json();
-  //     const priceData = await(
-  //       await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
-  //     ).json();
-
-  //     setInfo(infoData);
-  //     setPriceInfo(priceData);
-  //     setLoading(false);
-  //   })();
-  // }, [])
 
   return <Container>
     <Helmet>
