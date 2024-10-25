@@ -100,9 +100,11 @@ import { Helmet } from 'react-helmet';
 //#region style-component
 const BackButton = styled.button.attrs({ type: 'button' })`
   position: absolute;
-  top: 20px;
+  top: 43px;
   left: 20px;
-  color: #fff;
+  color: ${prop => prop.theme.textColor};
+  font-weight: bold;
+  font-size: 15px;
   background-color: transparent;
   border: none;
   width: 35px;

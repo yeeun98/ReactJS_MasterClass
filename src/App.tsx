@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from "./theme";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "./atoms";
+import { isDarkAtom } from "./crypto-tracker/atoms";
 
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,

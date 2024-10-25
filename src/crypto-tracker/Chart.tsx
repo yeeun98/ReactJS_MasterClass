@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { fetchCoinHistory } from "./api";
 import ApexChart from "react-apexcharts";
-import { isDarkAtom } from "../atoms";
+import { isDarkAtom } from "./atoms";
 import { useRecoilValue } from "recoil";
 
 export interface IHistorical {

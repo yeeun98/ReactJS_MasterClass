@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "./api";
 import { useRecoilState } from "recoil";
-import { isDarkAtom } from "../atoms";
+import { isDarkAtom } from "./atoms";
 
 //#region style-component
 export const Container = styled.div`
@@ -85,7 +85,7 @@ function Coins() {
       <Title>코인</Title>
       <button type="button" onClick={toggleDartAtom}>Toggle Mode</button>
     </Header>
-    
+
     <Main>
         {
           isLoading ? (<Loader>로드중...</Loader>) : (
