@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 /**
@@ -35,26 +34,52 @@ function TodoList() {
   </div>
 }
  */
+interface FormData {
+  [key: string]: string;
+}
+interface IForm {
+  email: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  password: string;
+  password1: string;
+}
 
+  
 function TodoList() {
-  const { register, handleSubmit, formState } = useForm();
-  const onValid = (data: any) => {
+  const { register, handleSubmit, formState: {errors} } = useForm<IForm>();
+  const onValid = (data: IForm) => {
     console.log(data)
   };
-  console.error(formState.errors)
+  console.error(errors)
 
   return  <form onSubmit={handleSubmit(onValid)} style={{display: 'flex', flexDirection: 'column', width: '200px'}}>
-    <input {...register('email', {required: true})} placeholder="Email" />
-    <input {...register('firstName')} placeholder="First Name" />
-    <input {...register('lastName')} placeholder="Last Name" />
-    <input {...register('userName')} placeholder="User Name" />
+    <input {...register('email', {
+      required: true,
+      pattern: {
+        value: /^[A-Za-z0-9._%+-]+@naver.com/g,
+        message: 'Only naver.com emails allowed'
+      }
+    })} placeholder="Email" />
+    <span>{errors?.email?.message}</span>
+
+    <input {...register('firstName', {
+      required: true
+    })} placeholder="First Name" />
+    <input {...register('lastName', {
+      required: true
+    })} placeholder="Last Name" />
+    <input {...register('userName', {
+      required: true,
+    })} placeholder="User Name" />
     <input {...register('password', {
       required: true,
-      minLength: {
-        value: 10,
-        message: 'Your password is too short.'
-      }})} placeholder="PassWord" />
-    <input {...register('password1')} placeholder="PassWord1" />
+    })} placeholder="PassWord" />
+    <input {...register('password1', {
+      required: true,
+    })} placeholder="PassWord1" />
+    
     <button>Add</button>
   </form>;
 }
