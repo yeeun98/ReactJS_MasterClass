@@ -34,6 +34,8 @@ function TodoList() {
   </div>
 }
  */
+
+//#region type
 interface FormData {
   [key: string]: string;
 }
@@ -44,17 +46,22 @@ interface IForm {
   userName: string;
   password: string;
   password1: string;
+  extraError?: string;
 }
+//#endregion
 
-  
 function TodoList() {
-  const { register, handleSubmit, formState: {errors} } = useForm<IForm>();
+  const { register, handleSubmit, formState: {errors}, setError } = useForm<IForm>();
   const onValid = (data: IForm) => {
-    console.log(data)
-  };
-  console.error(errors)
+    if (data.password !== data.password1) {
+      setError('password1', {message: "Password are not the same."}, {shouldFocus: true});
+    }
 
-  return  <form onSubmit={handleSubmit(onValid)} style={{display: 'flex', flexDirection: 'column', width: '200px'}}>
+    setError('extraError', {message: 'Server Offline'});
+  };
+  console.error(errors);
+
+  return  <form onSubmit={handleSubmit(onValid)} style={{display: 'flex', flexDirection: 'column', width: '500px'}}>
     <input {...register('email', {
       required: true,
       pattern: {
@@ -65,22 +72,39 @@ function TodoList() {
     <span>{errors?.email?.message}</span>
 
     <input {...register('firstName', {
-      required: true
+      required: true,
+      validate: (value) => true
     })} placeholder="First Name" />
+    <span>{errors?.firstName?.message}</span>
+
     <input {...register('lastName', {
-      required: true
+      required: true,
+      validate: (value) => value.includes('nico') ? 'No "nico" allowed' : true
     })} placeholder="Last Name" />
+    <span>{errors?.lastName?.message}</span>
+
     <input {...register('userName', {
       required: true,
+      validate: {
+        noNico: (value) => value.includes('nico') ? 'No "nico" allowed' : true,
+        noNick: (value) => value.includes('nick') ? 'No "nick" allowed' : true,
+      }
     })} placeholder="User Name" />
+    <span>{errors?.userName?.message}</span>
+
     <input {...register('password', {
       required: true,
     })} placeholder="PassWord" />
+    <span>{errors?.password?.message}</span>
+
     <input {...register('password1', {
       required: true,
     })} placeholder="PassWord1" />
-    
+    <span>{errors?.password1?.message}</span>
+
     <button>Add</button>
+
+    <div>{errors?.extraError?.message}</div>
   </form>;
 }
 
