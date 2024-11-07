@@ -22,9 +22,9 @@ function ToDo({ text, category, id }: IToDo) {
 
   return <li>
     <span>{ text }</span>
-    { category !== 'TO_DO' && <button name="TO_DO" onClick={onClick}>TO_DO</button>}
-    { category !== 'DOING' && <button name="DOING" onClick={onClick}>DOING</button>}
-    { category !== 'DONE' && <button name="DONE" onClick={onClick}>DONE</button>}
+    { category !== 'TO_DO' && <button name="TO_DO" onClick={onClick}>TO_DO</button> }
+    { category !== 'DOING' && <button name="DOING" onClick={onClick}>DOING</button> }
+    { category !== 'DONE' && <button name="DONE" onClick={onClick}>DONE</button> }
   </li>;
 }
 
