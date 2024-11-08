@@ -1,7 +1,7 @@
 import { atom, selector } from "recoil";
-import { IToDo } from "./interface";
+import { IToDo, categories } from "./interface";
 
-export const categoryState = atom({
+export const categoryState = atom<categories>({
   key: 'category',
   default: 'TO_DO'
 })
