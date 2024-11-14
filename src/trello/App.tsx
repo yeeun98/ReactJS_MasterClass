@@ -1,6 +1,5 @@
-import { useRecoilState } from "recoil";
 import { createGlobalStyle } from "styled-components";
-import { hourSelector, minuteState } from "./atom";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -70,30 +69,27 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const [minutes, setMinutes] = useRecoilState(minuteState);
-  const [hours, setHours] = useRecoilState(hourSelector);
-  const onMinutesChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setMinutes(+event.currentTarget.value);
-  };
-  const onHoursChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setHours(+event.currentTarget.value);
-  };
+  const onDragEnd = () => {};
 
   return (
     <>
       <GlobalStyle />
-      <input
-        type="number"
-        value={minutes}
-        onChange={onMinutesChange}
-        placeholder="Minutes"
-      />
-      <input
-        type="number"
-        value={hours}
-        onChange={onHoursChange}
-        placeholder="Hours"
-      />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div>
+          <Droppable droppableId="one">
+            {() => (
+              <ul>
+                <Draggable draggableId="first" index={0}>
+                  {()=> <li>Hello</li>}
+                </Draggable>
+                <Draggable draggableId="second" index={1}>
+                  {()=> <li>Hello</li>}
+                </Draggable>
+              </ul>
+            )}
+          </Droppable>
+        </div>
+      </DragDropContext>
     </>
   );
 }
