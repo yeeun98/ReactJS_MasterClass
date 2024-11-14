@@ -77,13 +77,30 @@ function App() {
       <DragDropContext onDragEnd={onDragEnd}>
         <div>
           <Droppable droppableId="one">
-            {() => (
-              <ul>
+            {(provided) => (
+              <ul ref={provided.innerRef} {...provided.droppableProps}>
                 <Draggable draggableId="first" index={0}>
-                  {()=> <li>Hello</li>}
+                  {(magic) => (
+                    <li 
+                      ref={magic.innerRef}
+                      {...magic.draggableProps}
+                      
+                    >
+                      <span {...magic.dragHandleProps}>🔥</span>
+                      One
+                    </li>
+                  )}
                 </Draggable>
                 <Draggable draggableId="second" index={1}>
-                  {()=> <li>Hello</li>}
+                  {(magic) => (
+                    <li 
+                      ref={magic.innerRef}
+                      {...magic.draggableProps}
+                    >
+                      <span {...magic.dragHandleProps}>🔥</span>
+                      Two
+                    </li>
+                  )}
                 </Draggable>
               </ul>
             )}
