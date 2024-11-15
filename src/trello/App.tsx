@@ -2,6 +2,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import { DragDropContext, Draggable, DropResult, Droppable } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
 import { toDoState } from "./atom";
+import DraggableCard from "./components/DraggableCard";
 
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -93,15 +94,7 @@ const Board = styled.div`
   border-radius: 5px;
   min-height: 200px;
 `;
-const Card = styled.div`
-  border-radius: 5px;
-  padding: 5px 10px;
-  background-color: ${props => props.theme.cardColor};
 
-  &:not(:last-child) {
-    margin-bottom: 5px;
-  }
-`;
 
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
@@ -130,18 +123,7 @@ function App() {
                   {
                     toDos.map((toDo, idx) => (
                       // key 값을 draggableId와 같은 값을 바인딩 해야함
-                      <Draggable draggableId={toDo} index={idx} key={toDo}>
-                        {(magic) => (
-                          <Card 
-                            ref={magic.innerRef}
-                            {...magic.draggableProps}
-                            {...magic.dragHandleProps}
-                          >
-                            <span>🔥</span>
-                            { toDo }
-                          </Card>
-                        )}
-                      </Draggable>
+                      <DraggableCard toDo={toDo} idx={idx} key={toDo} />
                     ))}
                     { provided.placeholder }
                 </Board>
