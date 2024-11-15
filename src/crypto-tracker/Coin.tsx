@@ -24,7 +24,7 @@ import { Helmet } from 'react-helmet';
  *
  **/
 
-  //#region interface
+//#region interface
   interface RouteState {
     name: string;
   }
@@ -102,7 +102,7 @@ const BackButton = styled.button.attrs({ type: 'button' })`
   position: absolute;
   top: 43px;
   left: 20px;
-  color: ${prop => prop.theme.textColor};
+  /* color: ${prop => prop.theme.textColor}; */
   font-weight: bold;
   font-size: 15px;
   background-color: transparent;
@@ -136,7 +136,7 @@ const RowItem = styled.li`
 `;
 
 const Description = styled.p`
-  color: ${prop => prop.theme.textColor};
+  /* color: ${prop => prop.theme.textColor}; */
   margin: 24px 0;
 `;
 
@@ -156,7 +156,7 @@ const Tab = styled.li<{isActive: boolean}>`
   font-size: 14px;
 
   a {
-    color: ${props => props.isActive ? props.theme.accentColor : '#fff'};
+    /* color: ${props => props.isActive ? props.theme.accentColor : '#fff'}; */
   }
 `;
 //#endregion

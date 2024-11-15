@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import Coins from "./Coins";
 import { ThemeProvider } from 'styled-components';
-import { darkTheme, lightTheme } from "../theme";
+// import { darkTheme, lightTheme } from "../theme";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useRecoilValue } from "recoil";
 import { isDarkAtom } from "./atoms";
@@ -59,8 +59,8 @@ export const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: 'Source Sans Pro, sans-serif';
-    background-color: ${props => props.theme.bgColor};
-    color: ${props => props.theme.textColor};
+    /* background-color: ${props => props.theme.bgColor}; */
+    /* color: ${props => props.theme.textColor}; */
   }
   a {
     text-decoration: none;
@@ -80,11 +80,11 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      {/* <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <ReactQueryDevtools initialIsOpen={true} />
         <GlobalStyle />
         <Coins />
-      </ThemeProvider>
+      </ThemeProvider> */}
     </>
   );
 }

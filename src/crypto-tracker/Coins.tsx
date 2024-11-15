@@ -11,7 +11,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
-  background-color: ${props => props.theme.bgColor};
+  /* background-color: ${props => props.theme.bgColor}; */
   box-sizing: border-box;
 `;
 export const Header = styled.header`
@@ -21,7 +21,7 @@ export const Header = styled.header`
   width: 100%;
   max-width: 480px;
   margin-left: -20px;
-  background-color: ${props => props.theme.bgColor};
+  /* background-color: ${props => props.theme.bgColor}; */
 `;
 export const Main = styled.main`
   padding-top: 80px;
@@ -44,7 +44,7 @@ const Coin = styled.li`
 `;
 
 export const Title = styled.h1`
-  color: ${props => props.theme.textColor};
+  /* color: ${props => props.theme.textColor}; */
   font-size: 35px;
   font-weight: 700;
   width: 100%; 
