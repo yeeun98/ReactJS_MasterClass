@@ -1,5 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, DropResult, Droppable } from "react-beautiful-dnd";
+import { useRecoilState } from "recoil";
+import { toDoState } from "./atom";
 
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -101,10 +103,10 @@ const Card = styled.div`
   }
 `;
 
-const toDos = ['a', 'b', 'c', 'd', 'e', 'f'];
-
 function App() {
-  const onDragEnd = () => {};
+  const [toDos, setToDos] = useRecoilState(toDoState);
+  const onDragEnd = ({destination, source}: DropResult) => {
+  };
 
   return (
     <>
@@ -117,7 +119,7 @@ function App() {
                 <Board ref={provided.innerRef} {...provided.droppableProps}>
                   {
                     toDos.map((toDo, idx) => (
-                      <Draggable draggableId={toDo} index={idx}>
+                      <Draggable draggableId={toDo} index={idx} key={idx}>
                         {(magic) => (
                           <Card 
                             ref={magic.innerRef}
