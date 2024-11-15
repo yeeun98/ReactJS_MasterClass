@@ -105,7 +105,17 @@ const Card = styled.div`
 
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
-  const onDragEnd = ({destination, source}: DropResult) => {
+  const onDragEnd = ({draggableId, destination, source}: DropResult) => {
+    if(!destination) return;
+
+    setToDos(oldToDos => {
+      const copyToDos = [...oldToDos];
+      // 1) Delete item on source.index
+      copyToDos.splice(source.index, 1);
+      // 2) Put back the item on the destination.index
+      copyToDos.splice(destination?.index, 0, draggableId);
+      return copyToDos;
+    })
   };
 
   return (
@@ -119,7 +129,8 @@ function App() {
                 <Board ref={provided.innerRef} {...provided.droppableProps}>
                   {
                     toDos.map((toDo, idx) => (
-                      <Draggable draggableId={toDo} index={idx} key={idx}>
+                      // key 값을 draggableId와 같은 값을 바인딩 해야함
+                      <Draggable draggableId={toDo} index={idx} key={toDo}>
                         {(magic) => (
                           <Card 
                             ref={magic.innerRef}
